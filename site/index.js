@@ -15,6 +15,21 @@ const httpProvider = new $vite_HTTP.HTTP_RPC("https://vitanode.lightcord.org/htt
 const onConnect = async () => {
     await new Promise((res) => setTimeout(res, 0))
 
+    const fee = await (async () => {
+        const call = $vite_vitejs.abi.encodeFunctionCall(abi, [], "feeInfo")
+        
+        const result = await api.request("contract_callOffChainMethod", {
+            address: smartContractAddress,
+            data: Buffer.from(call, "hex").toString("base64"),
+            code: offchaincode
+        })
+        const decoded = $vite_vitejs.abi.decodeParameters(
+            abi.find(e => e.name === "feeInfo").outputs.map(e => e.type),
+            Buffer.from(result, "base64").toString("hex")
+        )
+        document.getElementById("fee-info").textContent = `${decoded[0]}%`
+        return parseInt(decoded[0])
+    })()
     await Promise.all([
         (async () => {
             const call = $vite_vitejs.abi.encodeFunctionCall(abi, [
@@ -48,30 +63,12 @@ const onConnect = async () => {
                 abi.find(e => e.name === "getBalance").outputs.map(e => e.type),
                 Buffer.from(result, "base64").toString("hex")
             )
-            const banoshis = BigInt(decoded[0])/BigInt("1"+"0".repeat(27))
+            const banoshis = BigInt(decoded[0])/BigInt("1"+"0".repeat(27))*BigInt(100)/BigInt(100-fee)
             const bananos = Number(banoshis)/100
             document.getElementById("vinotovgate-max").textContent = `${bananos} BANs`
-        })(),
-        (async () => {
-            const call = $vite_vitejs.abi.encodeFunctionCall(abi, [], "feeInfo")
-            
-            const result = await api.request("contract_callOffChainMethod", {
-                address: smartContractAddress,
-                data: Buffer.from(call, "hex").toString("base64"),
-                code: offchaincode
-            })
-            const decoded = $vite_vitejs.abi.decodeParameters(
-                abi.find(e => e.name === "feeInfo").outputs.map(e => e.type),
-                Buffer.from(result, "base64").toString("hex")
-            )
-            document.getElementById("fee-info").textContent = `${decoded[0]}%`
         })()
     ])
     document.getElementById("address").textContent = smartContractAddress
-    document.getElementById("address").onclick = () => {
-        navigator.clipboard.writeText(smartContractAddress)
-        alert("Copied!")
-    }
 }
 
 const api = new $vite_vitejs.ViteAPI(httpProvider, onConnect)
