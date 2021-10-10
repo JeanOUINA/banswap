@@ -1,7 +1,7 @@
 pragma soliditypp ^0.4.3;
 
 contract Bridge {
-    tokenId constant VINO_TOKEN_ID = "tti_4c4c64ea317db97d834cfc95";
+    tokenId constant VINO_TOKEN_ID = "tti_f9bd6782f966f899d74d7df8";
     tokenId constant VGATE_TOKEN_ID = "tti_61f59e574f9f7babfe8908e5";
 
     getter supportedTokens()returns (tokenId, tokenId) {

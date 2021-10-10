@@ -5,10 +5,10 @@ const offchaincode = Buffer.from(
     "608060405260043610610071576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e87cfe814610073578063376d54bf146100c257806347e5fd0d146100e05780635c6cfcbe1461011d5780639f8fe8561461016957610071565b005b6100ac6004803603602081101561008a5760006000fd5b81019080803569ffffffffffffffffffff1690602001909291905050506101be565b6040518082815260200191505060405180910390f35b6100ca6101fe565b6040518082815260200191505060405180910390f35b6100e8610210565b604051808381526020018269ffffffffffffffffffff1669ffffffffffffffffffff1681526020019250505060405180910390f35b610125610240565b604051808274ffffffffffffffffffffffffffffffffffffffffff1674ffffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610171610270565b604051808369ffffffffffffffffffff1669ffffffffffffffffffff1681526020018269ffffffffffffffffffff1669ffffffffffffffffffff1681526020019250505060405180910390f35b6000600360005060008369ffffffffffffffffffff1669ffffffffffffffffffff1681526020019081526020016000216000505490506101f9565b919050565b6000600260005054905061020d565b90565b60006000600060005054600160009054906101000a900469ffffffffffffffffffff169150915061023c565b9091565b6000600460009054906101000a900474ffffffffffffffffffffffffffffffffffffffffff16905061026d565b90565b600060006950e441ba15d97c17b6a86969efa3308628b0e1a4a891509150610293565b909156fea165627a7a72305820dd9ab6dc21094eccfd14114123b96ed024deefac96c743f956f2ba68df7930430029"
 , "hex").toString("base64")
 const tokens = {
-    VINO: "tti_4c4c64ea317db97d834cfc95",
+    VINO: "tti_f9bd6782f966f899d74d7df8",
     VGATE: "tti_61f59e574f9f7babfe8908e5"
 }
-const smartContractAddress = "vite_eecab60513ec3b8a2595cbe25d3da1a286c28dc128da3d1bde"
+const smartContractAddress = "vite_eb647e17508ca29f26d690bedbc26399d9dcd8e59af6401cfd"
 
 const httpProvider = new $vite_HTTP.HTTP_RPC("https://vitanode.lightcord.org/http")
 
@@ -50,7 +50,7 @@ const onConnect = async () => {
             )
             const banoshis = BigInt(decoded[0])/BigInt("1"+"0".repeat(27))
             const bananos = Number(banoshis)/100
-            document.getElementById("vinotovgate-max").textContent = `${bananos} wBANs`
+            document.getElementById("vinotovgate-max").textContent = `${bananos} BANs`
         })(),
         (async () => {
             const call = $vite_vitejs.abi.encodeFunctionCall(abi, [], "feeInfo")
