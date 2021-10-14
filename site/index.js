@@ -10,7 +10,7 @@ const tokens = {
 }
 const smartContractAddress = "vite_eb647e17508ca29f26d690bedbc26399d9dcd8e59af6401cfd"
 
-const httpProvider = new $vite_HTTP.HTTP_RPC("https://vitanode.lightcord.org/http")
+const httpProvider = new $vite_HTTP.HTTP_RPC("https://node-vite.thomiz.dev/http")
 
 const onConnect = async () => {
     await new Promise((res) => setTimeout(res, 0))
