@@ -8,7 +8,7 @@ const tokens = {
     VINO: "tti_f9bd6782f966f899d74d7df8",
     VGATE: "tti_61f59e574f9f7babfe8908e5"
 }
-const smartContractAddress = "vite_eb647e17508ca29f26d690bedbc26399d9dcd8e59af6401cfd"
+const smartContractAddress = "vite_afa7def1946264f71165669c72d1e570aff2eb70e14524fa8d"
 
 const httpProvider = new $vite_HTTP.HTTP_RPC("https://node-vite.thomiz.dev/http")
 

@@ -97,12 +97,12 @@ contract Bridge {
             balances[to] -= msg.amount;
             balances[from] += msg.amount;
         }else if(msg.tokenid == VINO_TOKEN_ID){
+            to = VGATE_TOKEN_ID;
             // keep fees in vino, only convert vgate.
             require(balances[to] >= amount);
 
             balances[to] -= amount;
             balances[from] += amount;
-            to = VGATE_TOKEN_ID;
         }else{
             revert();
         }
