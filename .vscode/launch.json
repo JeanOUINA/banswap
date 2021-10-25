@@ -7,7 +7,7 @@
         {
             "type": "soliditypp",
             "request": "launch",
-            "name": "NFT Debug",
+            "name": "BANSwap Debug",
             "program": "${file}"
         }
     ]
